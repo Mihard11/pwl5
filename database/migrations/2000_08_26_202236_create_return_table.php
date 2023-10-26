@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('return', function (Blueprint $table) {
             $table->id();
+            $table->boolean('charge'); 
+            $table->integer('amount');
             $table->timestamps();
         });
+        
     }
 
     /**

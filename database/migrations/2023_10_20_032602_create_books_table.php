@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('books', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('author');
             $table->year('year');
@@ -22,6 +22,22 @@ return new class extends Migration
             $table->timestamps();
 
         });
+        Schema::table('loans_detail', function (Blueprint $table) {
+            $table->foreignId('book_id')->after('id');
+            $table->foreign('book_id')
+                    ->references('id')
+                    ->on('books')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+        });
+        Schema::table('categories', function (Blueprint $table) {
+
+            $table->foreign('id')
+                    ->references('id')
+                    ->on('books')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+        });
     }
 
     /**
@@ -29,6 +45,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropForeign('categories_id_foreign');
+        });
         Schema::dropIfExists('books');
     }
 };

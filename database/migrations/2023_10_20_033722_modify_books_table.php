@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('publisher', 100)->change();
             $table->string('city', 75)->change();
         });
+
     }
 
     /**
