@@ -17,19 +17,19 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         //
-        $faker = Faker::create('id_ID');
+        // $faker = Faker::create('id_ID');
 
-        for($i = 1; $i <= 20; $i++){
+        // for($i = 1; $i <= 20; $i++){
 
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'email_verified_at' => now(),
-                'password' => Hash::make('password'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        //     DB::table('users')->insert([
+        //         'name' => $faker->name,
+        //         'email' => $faker->email,
+        //         'email_verified_at' => now(),
+        //         'password' => Hash::make('password'),
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
 
-        }
+        // }
     }
 }
