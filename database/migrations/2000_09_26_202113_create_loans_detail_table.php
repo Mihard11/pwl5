@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('loans_detail', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+
             $table->boolean('is_return');
-            
             $table->timestamps();
         });
     }

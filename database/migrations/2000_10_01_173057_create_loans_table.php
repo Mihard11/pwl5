@@ -18,6 +18,14 @@ return new class extends Migration
             $table->date('return_at');
             $table->timestamps();
         });
+        Schema::table('loans_detail', function (Blueprint $table) {
+            $table->foreignId('loan_id')->after('id');
+            $table->foreign('loan_id')
+                    ->references('loans_id')
+                    ->on('loans')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+        });
     }
 
     /**
@@ -25,6 +33,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('loans_detail', function (Blueprint $table) {
+            $table->dropForeign('loan_detail_loan_id_foreign');
+            $table->dropColumn('loan_id');
+        });
         Schema::dropIfExists('loans');
     }
 };
